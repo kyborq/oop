@@ -11,19 +11,26 @@ int main(int argc, char* argv[])
 {
 	setlocale(0, "");
 
-	if (argc <= 2)
+	if (argc < 2)
 	{
-		cerr << "Ожидалось аргументов 2, передано " << argc - 1 << endl << "Использование compare.exe file1.txt file2.txt" << endl;
+		cout << "Использование compare.exe file1.txt file2.txt" << endl;
 		return 2;
 	}
 
-	string source_file_name = argv[1];
-	string compare_file_name = argv[2];
-	int compare_result = compare_files(source_file_name, compare_file_name);
+	string source_file_name;
+	string compare_file_name;
+	int compare_result;
+
+
+	
+	source_file_name = argv[1];
+	compare_file_name = argv[2];
+
+	compare_result = compare_files(source_file_name, compare_file_name);
 
 	if (compare_result == -1)
 	{
-		cerr << "Не удалось открыть файлы. Проверьте существование " << source_file_name << " и " << compare_file_name << endl;
+		cout << "Не удалось открыть файлы. Проверьте существование " << source_file_name << " и " << compare_file_name << endl;
 		return 3;
 	}
 
@@ -46,13 +53,12 @@ int compare_files(string source_file_name, string compare_file_name)
 {
 	ifstream source_file(source_file_name);
 	ifstream compare_file(compare_file_name);
-
-	if (!source_file.is_open() || !compare_file.is_open())
-		return -1;
-
 	string source_line;
 	string compare_line;
 	int line_index = -1;
+
+	if (!source_file.is_open() || !compare_file.is_open())
+		return -1;
 
 	while (getline(source_file, source_line) && getline(compare_file, compare_line))
 	{
@@ -61,4 +67,6 @@ int compare_files(string source_file_name, string compare_file_name)
 		if (compare_line != source_line)
 			return line_index;
 	}
+
+	return 0;
 }
