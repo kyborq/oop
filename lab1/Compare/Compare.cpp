@@ -1,72 +1,92 @@
 ﻿#include <iostream>
 #include <fstream>
 #include <string>
-#include <locale>
+#include <optional>
 
 using namespace std;
 
-int compare_files(string source_file_name, string compare_file_name);
+struct Args
+{
+	string sourceFileName;
+	string compareFileName;
+};
+
+int CompareFiles(string, string);
+optional<Args> ParseArgs(int argc, char* argv[]);
 
 int main(int argc, char* argv[])
 {
-	setlocale(0, "");
+	auto args = ParseArgs(argc, argv);
 
-	if (argc < 2)
+	if (!args)
 	{
-		cout << "Использование compare.exe file1.txt file2.txt" << endl;
-		return 2;
+		cerr << "Invalid arguments count" << endl
+			<< "Using: compare.exe <source file> <comparing file>" << endl;
+		return 1;
 	}
 
-	string source_file_name;
-	string compare_file_name;
-	int compare_result;
+	int compareResult = CompareFiles(args->sourceFileName, args->compareFileName);
 
-
-	
-	source_file_name = argv[1];
-	compare_file_name = argv[2];
-
-	compare_result = compare_files(source_file_name, compare_file_name);
-
-	if (compare_result == -1)
+	if (compareResult == 0)
 	{
-		cout << "Не удалось открыть файлы. Проверьте существование " << source_file_name << " и " << compare_file_name << endl;
-		return 3;
-	}
-
-	if (compare_result == 0)
-	{
-		cout << "Файлы идентичны." << endl;
+		cout << "Files are equal" << endl;
 		return 0;
 	}
 
-	cout << "Обнаружены расхождения в файлах на " << compare_result << " строке!" << endl;
-	return 1;
-}
-
-/**
-	@param string Имя файла источника
-	@param string Имя файла для сравнения с источником
-	@return int Номер строки если файлы отличаются. Нуль, если файлы равны. -1 если нельзя открыть файлы
-*/
-int compare_files(string source_file_name, string compare_file_name)
-{
-	ifstream source_file(source_file_name);
-	ifstream compare_file(compare_file_name);
-	string source_line;
-	string compare_line;
-	int line_index = -1;
-
-	if (!source_file.is_open() || !compare_file.is_open())
-		return -1;
-
-	while (getline(source_file, source_line) && getline(compare_file, compare_line))
+	if (compareResult > 0)
 	{
-		line_index++;
-
-		if (compare_line != source_line)
-			return line_index;
+		cout << "Files are different. Line number is " << compareResult << endl;
+		return 1;
 	}
 
-	return 0;
+	return compareResult;
 }
+
+optional<Args> ParseArgs(int argc, char* argv[])
+{
+	if (argc != 3)
+	{
+		return nullopt;
+	}
+	Args args;
+	args.sourceFileName = argv[1];
+	args.compareFileName = argv[2];
+
+	return args;
+}
+
+int CompareFiles(string sourceFileName, string compareFileName)
+{
+	ifstream sourceFile;
+	sourceFile.open(sourceFileName);
+	if (!sourceFile.is_open())
+	{
+		cerr << "Failed to open '" << sourceFileName << "' for reading" << endl;
+		return -1;
+	}
+
+	ifstream compareFile;
+	compareFile.open(compareFileName);
+	if (!compareFile.is_open())
+	{
+		cerr << "Failed to open '" << compareFileName << "' for reading" << endl;
+		return -1;
+	}
+
+	string sourceLine;
+	string compareLine;
+	int lineIndex = 0;
+
+	while (getline(sourceFile, sourceLine))
+	{
+		getline(compareFile, compareLine);
+
+		lineIndex++;
+
+		if (compareLine != sourceLine)
+			return lineIndex;
+	}
+
+	return lineIndex;
+}
+
