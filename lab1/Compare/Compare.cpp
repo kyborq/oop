@@ -89,4 +89,3 @@ int CompareFiles(string sourceFileName, string compareFileName)
 
 	return lineIndex;
 }
-
