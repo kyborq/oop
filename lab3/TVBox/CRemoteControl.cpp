@@ -57,7 +57,7 @@ void CRemoteControl::SelectChannel(std::string& command)
 {
 	int channelNumber = GetNumber(command);
 
-	if (channelNumber == 0)
+	if (channelNumber == -1)
 	{
 		m_output << "Channel number contains invalid characters" << std::endl;
 		return;
@@ -91,13 +91,13 @@ int CRemoteControl::GetNumber(std::string& command)
 	int channel = 0;
 
 	std::string digits = "0123456789";
-	for (size_t i = command.find(" ") + 1; i < command.length(); i++)
+	for (int i = command.find(" ") + 1; i < command.length(); i++)
 	{
 		if ((command[i] < '0') || (command[i] > '9'))
 		{
-			return 0;
+			return -1;
 		}
-		channel = channel * 10 + digits.find(command[i]);
+		channel = static_cast<unsigned long long>(channel) * 10 + digits.find(command[i]);
 	}
 
 	return channel;

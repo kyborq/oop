@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TVBox", "TVBox\TVBox.vcxproj", "{1B623F7A-F13E-4C4E-9125-76AB7B62D77D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TVBox_tests", "TVBox_tests\TVBox_tests.vcxproj", "{BB2519B8-9EFF-492E-8D28-EEDB5CEB93AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{1B623F7A-F13E-4C4E-9125-76AB7B62D77D}.Release|x64.Build.0 = Release|x64
 		{1B623F7A-F13E-4C4E-9125-76AB7B62D77D}.Release|x86.ActiveCfg = Release|Win32
 		{1B623F7A-F13E-4C4E-9125-76AB7B62D77D}.Release|x86.Build.0 = Release|Win32
+		{BB2519B8-9EFF-492E-8D28-EEDB5CEB93AB}.Debug|x64.ActiveCfg = Debug|x64
+		{BB2519B8-9EFF-492E-8D28-EEDB5CEB93AB}.Debug|x64.Build.0 = Debug|x64
+		{BB2519B8-9EFF-492E-8D28-EEDB5CEB93AB}.Debug|x86.ActiveCfg = Debug|Win32
+		{BB2519B8-9EFF-492E-8D28-EEDB5CEB93AB}.Debug|x86.Build.0 = Debug|Win32
+		{BB2519B8-9EFF-492E-8D28-EEDB5CEB93AB}.Release|x64.ActiveCfg = Release|x64
+		{BB2519B8-9EFF-492E-8D28-EEDB5CEB93AB}.Release|x64.Build.0 = Release|x64
+		{BB2519B8-9EFF-492E-8D28-EEDB5CEB93AB}.Release|x86.ActiveCfg = Release|Win32
+		{BB2519B8-9EFF-492E-8D28-EEDB5CEB93AB}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
