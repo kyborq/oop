@@ -13,10 +13,38 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\tests">
+      <UniqueIdentifier>{0a6d9852-8d3e-4f26-b538-89002bb0bb46}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Compare.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="test.bat">
+      <Filter>Исходные файлы</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="equal_files_1.txt">
+      <Filter>Исходные файлы\tests</Filter>
+    </Text>
+    <Text Include="equal_files_2.txt">
+      <Filter>Исходные файлы\tests</Filter>
+    </Text>
+    <Text Include="equal_with_mistake_1.txt">
+      <Filter>Исходные файлы\tests</Filter>
+    </Text>
+    <Text Include="equal_with_mistake_2.txt">
+      <Filter>Исходные файлы\tests</Filter>
+    </Text>
+    <Text Include="lines_less.txt">
+      <Filter>Исходные файлы\tests</Filter>
+    </Text>
+    <Text Include="lines_more.txt">
+      <Filter>Исходные файлы\tests</Filter>
+    </Text>
   </ItemGroup>
 </Project>
