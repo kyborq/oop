@@ -30,8 +30,8 @@ std::string CTriangle::ToString() const
 
 	strm << "Perimeter: " << GetPerimeter() << std::endl
 		<< "Area: " << GetArea() << std::endl
-		<< "OutlineColor: #" << std::setfill('0') << std::setw(6) << m_outlineColor << std::endl
-		<< "FillColor: #" << std::setfill('0') << std::setw(6) << m_fillColor << std::endl
+		<< "OutlineColor: #" << std::setfill('0') << std::setw(6) << std::hex << m_outlineColor << std::endl
+		<< "FillColor: #" << std::setfill('0') << std::setw(6) << std::hex << m_fillColor << std::endl
 		<< "Vertex1: [" << GetVertex1().x << "; " << GetVertex1().y << "]" << std::endl
 		<< "Vertex2: [" << GetVertex2().x << "; " << GetVertex2().y << "]" << std::endl
 		<< "Vertex3: [" << GetVertex3().x << "; " << GetVertex3().y << "]" << std::endl;

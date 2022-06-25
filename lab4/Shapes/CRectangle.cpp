@@ -27,8 +27,8 @@ std::string CRectangle::ToString() const
 
 	strm << "Perimeter: " << GetPerimeter() << std::endl
 		<< "Area: " << GetArea() << std::endl
-		<< "OutlineColor: #" << std::setfill('0') << std::setw(6) << m_outlineColor << std::endl
-		<< "FillColor: #" << std::setfill('0') << std::setw(6) << m_fillColor << std::endl
+		<< "OutlineColor: #" << std::setfill('0') << std::setw(6) << std::hex << m_outlineColor << std::endl
+		<< "FillColor: #" << std::setfill('0') << std::setw(6) << std::hex << m_fillColor << std::endl
 		<< "TopLeftPont: [" << GetLeftTop().x << "; " << GetLeftTop().y << "]" << std::endl
 		<< "Width: " << GetWidth() << std::endl
 		<< "Height: " << GetHeight() << std::endl;

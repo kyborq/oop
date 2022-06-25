@@ -9,6 +9,7 @@ class CShapeController
 public:
 	CShapeController(std::istream& input, std::ostream& output);
 	void HandleCommand();
+	std::vector<std::shared_ptr<IShape>> GetShapes();
 private:
 	std::istream& m_input;
 	std::ostream& m_output;
@@ -19,6 +20,6 @@ private:
 	void AddTriangle(std::istream& command);
 	void AddCircle(std::istream& command);
 
-	void GetShapeWithMinPerimeter() const;
-	void GetShapeWithMaxArea() const;
+	IShape* GetShapeWithMinPerimeter();
+	IShape* GetShapeWithMaxArea();
 };

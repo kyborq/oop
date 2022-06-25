@@ -2,9 +2,13 @@
 #include <iomanip>
 #include "CCircle.h"
 
-#define M_PI 3.14159265358979323846
+#define M_PI 3.141592653589793
 
 CCircle::CCircle(uint32_t outlineColor, uint32_t fillColor, CPoint center, double radius)
+	: m_outlineColor(outlineColor)
+	, m_fillColor(fillColor)
+	, m_center(center)
+	, m_radius(radius)
 {
 }
 
@@ -24,8 +28,8 @@ std::string CCircle::ToString() const
 
 	strm << "Perimeter: " << GetPerimeter() << std::endl
 		<< "Area: " << GetArea() << std::endl
-		<< "OutlineColor: #" << std::setfill('0') << std::setw(6) << m_outlineColor << std::endl
-		<< "FillColor: #" << std::setfill('0') << std::setw(6) << m_fillColor << std::endl
+		<< "OutlineColor: #" << std::setfill('0') << std::setw(6) << std::hex << m_outlineColor << std::endl
+		<< "FillColor: #" << std::setfill('0') << std::setw(6) << std::hex << m_fillColor << std::endl
 		<< "Center: [" << GetCenter().x << "; " << GetCenter().y << "]" << std::endl
 		<< "Radius: " << GetRadius() << std::endl;
 

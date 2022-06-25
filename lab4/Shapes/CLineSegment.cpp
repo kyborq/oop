@@ -23,11 +23,11 @@ std::string CLineSegment::ToString() const
 {
     std::ostringstream strm;
     
-    strm << "Perimeter: " << GetPerimeter() << std::endl
-        << "Area: " << GetArea() << std::endl
-        << "OutlineColor: #" << std::setfill('0') << std::setw(6) << m_outlineColor << std::endl
+    strm << "Line" << std::endl
+        << "Perimeter: " << GetPerimeter() << std::endl
         << "StartPoint: [" << GetStartPoint().x << "; " << GetStartPoint().y << "]" << std::endl
-        << "EndPoint: [" << GetEndPoint().x << "; " << GetEndPoint().y << "]" << std::endl;
+        << "EndPoint: [" << GetEndPoint().x << "; " << GetEndPoint().y << "]" << std::endl
+        << "OutlineColor: #" << std::setfill('0') << std::setw(6) << std::hex << GetOutlineColor() << std::endl;
 
     return strm.str();
 }

@@ -7,6 +7,7 @@
 #include "CRectangle.h"
 #include "CTriangle.h"
 #include "CCircle.h"
+#include <algorithm>
 
 const std::string COMMAND_ADD_CIRCLE = "circle";
 const std::string COMMAND_ADD_RECTANGLE = "rectangle";
@@ -61,6 +62,11 @@ void CShapeController::HandleCommand()
 		GetShapeWithMinPerimeter();
 		return;
 	}
+}
+
+std::vector<std::shared_ptr<IShape>> CShapeController::GetShapes()
+{
+	return m_shapes;
 }
 
 void CShapeController::AddLineSegment(std::istream& command)
@@ -195,47 +201,32 @@ void CShapeController::AddCircle(std::istream& command)
 	m_shapes.push_back(std::make_shared<CCircle>(circle));
 }
 
-void CShapeController::GetShapeWithMinPerimeter() const
+IShape*        CShapeController::GetShapeWithMinPerimeter()
 {
 	if (m_shapes.empty())
 	{
 		m_output << ERROR_EMPTY_SHAPES << std::endl;
-		return;
 	}
 
-	double perimeter = m_shapes[0]->GetPerimeter();
-	std::string info;
+	auto perimeterComparator = [](const std::shared_ptr<IShape>& a, const std::shared_ptr<IShape>& b) {
+		return a->GetPerimeter() < b->GetPerimeter();
+	};
+	auto minShape = std::min_element(m_shapes.begin(), m_shapes.end(), perimeterComparator);
 
-	for (auto shape : m_shapes)
-	{
-		if (shape->GetPerimeter() <= perimeter)
-		{
-			perimeter = shape->GetPerimeter();
-			info = shape->ToString();
-		}
-	}
-	m_output << info << std::endl 
-		<< "Min perimeter = " << perimeter << std::endl << std::endl;
+	return minShape->get();
 }
 
-void CShapeController::GetShapeWithMaxArea() const
+IShape* CShapeController::GetShapeWithMaxArea()
 {
 	if (m_shapes.empty())
 	{
 		m_output << ERROR_EMPTY_SHAPES << std::endl;
-		return;
 	}
 
-	double area = 0;
-	std::string info;
-	for (auto shape : m_shapes)
-	{
-		if (shape->GetArea() > area)
-		{
-			area = shape->GetArea();
-			info = shape->ToString();
-		}
-	}
+	auto areaComparator = [](const std::shared_ptr<IShape>& a, const std::shared_ptr<IShape>& b) {
+		return a->GetArea() > b->GetArea();
+	};
+	auto maxShape = std::max_element(m_shapes.begin(), m_shapes.end(), areaComparator);
 
-	m_output << info << std::endl << "Max area: " << area << std::endl << std::endl;
+	return maxShape->get();
 }
