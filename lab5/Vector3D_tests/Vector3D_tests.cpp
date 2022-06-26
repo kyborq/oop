@@ -58,7 +58,6 @@ SCENARIO("Cross product")
 	CHECK(abs(vector3.x - 7.5) < DBL_EPSILON);
 	CHECK(abs(vector3.y - 18) < DBL_EPSILON);
 	CHECK(abs(vector3.z - 14.5) < DBL_EPSILON);
-
 }
 
 SCENARIO("v2 = -v1")
